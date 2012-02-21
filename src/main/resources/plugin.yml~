@@ -1,0 +1,40 @@
+name: TPToggle
+main: com.hackhalo2.tp.TPToggle
+version: 3.0
+authors:
+    - PrecipiceGames
+    - FunnyMan3959 (Author Version 2.0)
+    - HACKhalo2 (Maintainer, Creator)
+commands:
+    tp:
+        description: Teleport to someone
+        usage: 'Usage: /tp <username>'
+        usage: 'Usage: /tp <x>,<y>,<z>'
+        example: /tp Notch
+        example: /tp 12,60,80
+        aliases: [teleport]
+    tpo:
+        descriprion: Override Teleport to someone
+        usage: 'Usage: /tpo <username>'
+        example: /tpo Notch
+        aliases: [tpovrride]
+    tpr:
+        description: Requests a TP
+        usage: 'Usage: /tpr <username>'
+        example: /tpr Notch
+        aliases: [tprequest]
+    tph:
+        description: Teleport someone to you, if they requested it
+        usage: 'Usage: /tph <username>'
+        example: /tph Notch
+        aliases: [tphere, bring, summon]
+    tpt:
+        description: Toggles whether people can /tp to you
+        usage: 'Usage: /tpt'
+        example: /tpt
+        aliases: [tptoggle]
+    tpc:
+        description: answers a teleport call
+        usage: 'Usage: /tph <username>'
+        example: /tph Notch
+        aliases: [tpcall, call, knock]
