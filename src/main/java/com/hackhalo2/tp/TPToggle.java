@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.hackhalo2.tp.commands.TPCCommand;
 import com.hackhalo2.tp.commands.TPCommand;
 import com.hackhalo2.tp.commands.TPHCommand;
 import com.hackhalo2.tp.commands.TPTCommand;
@@ -25,6 +24,7 @@ public class TPToggle extends JavaPlugin {
     protected File playerDataFolder;
     public Logger log = Bukkit.getLogger();
     public long delay;
+    //config.yml options
     
     public static long OPTIMAL_TICKS_PER_MINUTES = 20*60;
     
@@ -57,7 +57,6 @@ public class TPToggle extends JavaPlugin {
 	this.getCommand("tp").setExecutor(new TPCommand(this)); //TP and TPO command
 	this.getCommand("tpo").setExecutor(new TPCommand(this));
 	this.getCommand("tph").setExecutor(new TPHCommand(this)); //TPH Command
-	this.getCommand("tpc").setExecutor(new TPCCommand(this)); //TPC Command
 	
 	this.log.info("[TPToggle] Version 3.0 Enabled");
     }
