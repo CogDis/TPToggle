@@ -98,7 +98,7 @@ public class TPCommand implements CommandExecutor {
 						origin.sendMessage(ChatColor.AQUA+"Your request queue is empty");
 						return true;
 					}
-				} else if(Bukkit.getPlayer(args[1]) != null) {
+				} else if(args[0].equalsIgnoreCase("ban") || args[0].equalsIgnoreCase("pardon")) {
 					if(args[0].equalsIgnoreCase("ban")) {
 						origin.sendMessage(ChatColor.AQUA+"Correct Usage: "+ChatColor.GREEN+"/tp ban <playername>");
 						return true;
