@@ -7,11 +7,11 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import com.hackhalo2.tp.TPToggle;
 
 public class TPUtil {
-
+	
 	private static TPToggle plugin;
-
-	public TPUtil(TPToggle instance) {
-		plugin = instance;
+	
+	public static void setPlugin(TPToggle instance) {
+		TPUtil.plugin = instance;
 	}
 
 	public static boolean TPTargetToOrigin(Player origin, Player target) {
