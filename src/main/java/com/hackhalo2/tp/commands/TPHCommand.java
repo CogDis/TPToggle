@@ -39,8 +39,13 @@ public class TPHCommand implements CommandExecutor {
 					Player target = Bukkit.getPlayer(args[0]);
 					TPPlayer tpTarget = this.plugin.getTPPlayer(target);
 					if(tpOrigin.isRequesting(target.getName()) || tpOrigin.getOverrideStatus()) {
-						this.plugin.removeWorker(this.plugin.getTPPlayer(origin), target.getName());
-						return TPUtil.TPTargetToOrigin(origin, target);
+						if(this.plugin.removeWorker(tpOrigin, target.getName())) {
+							tpOrigin.removeRequest(target.getName());
+							return TPUtil.TPTargetToOrigin(origin, target);
+						} else {
+							origin.sendMessage(ChatColor.RED + " There was an error in TPToggle. Have an admin check the console for more info.");
+							return true;
+						}
 					} else if(tpTarget.canBeTPHTo(origin) && !tpTarget.isTPBanned(origin.getName())) {
 						if(tpTarget.alert() || !origin.canSee(target)) {
 							tpTarget.addRequestName(origin.getName());

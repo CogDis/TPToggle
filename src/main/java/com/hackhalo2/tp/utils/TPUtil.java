@@ -35,8 +35,8 @@ public class TPUtil {
 			}
 
 			//Fifthly, check alert status
-			if(!tpTarget.alert()) {
-				origin.sendMessage(ChatColor.AQUA+"Player "+ChatColor.GREEN+target.getName()+ChatColor.AQUA+" is currently in "+ChatColor.GREEN+"DND mode");
+			if(!tpOrigin.alert()) {
+				target.sendMessage(ChatColor.AQUA+"Player "+ChatColor.GREEN+target.getName()+ChatColor.AQUA+" is currently in "+ChatColor.GREEN+"DND mode");
 				return false;
 			}
 

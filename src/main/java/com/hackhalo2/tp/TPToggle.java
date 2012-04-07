@@ -97,14 +97,16 @@ public class TPToggle extends JavaPlugin {
 		}
 	}
 
-	public void removeWorker(TPPlayer player, String name) {
+	public boolean removeWorker(TPPlayer player, String name) {
 		String key = player.playerName+"->"+name;
 		if(processes.containsKey(key)) {
 			int processID = processes.get(key);
 			Bukkit.getServer().getScheduler().cancelTask(processID);
 			processes.remove(key);
+			return true;
 		} else {
-			this.log.info("[TPToggle] Key "+key+" was invalid");
+			this.log.info("[TPToggle] Key "+key+" was invalid or missing");
+			return false;
 		}
 	}
 
