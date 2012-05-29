@@ -26,7 +26,15 @@ public class TPCommand implements CommandExecutor {
 		Player origin = (Player)cs;
 
 		boolean tpo = false;
-		if(c.getName().equals("tpo")) tpo = true;
+		
+		if(c.getName().equals("tpo")) {
+			if(origin.hasPermission("tptoggle.tpo")) tpo = true;
+			else {
+				origin.sendMessage(ChatColor.AQUA+"You do not have permission to "+ChatColor.GREEN+"override teleports");
+				return true;
+			}
+		}
+
 
 		if(origin.hasPermission("tptoggle.tp")) {
 			if(args.length == 0) {
@@ -87,13 +95,13 @@ public class TPCommand implements CommandExecutor {
 				} else if(args[0].contentEquals("#override") && origin.hasPermission("tptoggle.override")) {
 					this.plugin.getTPPlayer(origin).toggleOverride();
 					origin.sendMessage(ChatColor.AQUA+"Force Override mode is "+ChatColor.GREEN+(this.plugin.getTPPlayer(origin).override() ? "Off" : "On"));
-				} else if(args[0].contentEquals("#answer") && origin.hasPermission("tptoggle.request")) {
+				} else if((args[0].contentEquals("#answer") || args[0].contentEquals("#yes")) && origin.hasPermission("tptoggle.request")) {
 					TPPlayer tpOrigin = this.plugin.getTPPlayer(origin);
 					String temp = tpOrigin.getRequestName();
 					if(temp != null) {
 						Player target = Bukkit.getPlayerExact(temp);
 						this.plugin.removeWorker(tpOrigin, target.getName());
-						return TPUtil.TPTargetToOrigin(origin, target);
+						return TPUtil.TPTargetToOrigin(target, origin);
 					} else {
 						origin.sendMessage(ChatColor.AQUA+"Your request queue is empty");
 						return true;

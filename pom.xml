@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.hackhalo2.tp</groupId>
 	<artifactId>TPToggle</artifactId>
-	<version>3.0</version>
+	<version>3.0rc1</version>
 	<name>TPToggle</name>
 	<description>Teleport toggle plugin for Craftbukkit servers</description>
 
@@ -44,7 +44,7 @@
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.1-R5-SNAPSHOT</version>
+			<version>1.2.5-R3.0</version>
 		</dependency>
 	</dependencies>
 
