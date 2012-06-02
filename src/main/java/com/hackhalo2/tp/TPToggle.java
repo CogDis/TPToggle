@@ -1,13 +1,17 @@
 package com.hackhalo2.tp;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +30,9 @@ public class TPToggle extends JavaPlugin {
 	public Logger log = Bukkit.getLogger();
 	public long delay;
 	//config.yml options
+	
+	//alias'
+	private final List<String> tpAlias = Arrays.asList("tp, tpo");
 
 	public static long OPTIMAL_TICKS_PER_MINUTES = 20*60;
 
@@ -56,11 +63,14 @@ public class TPToggle extends JavaPlugin {
 		pm.registerEvents(this.listener, this);
 
 		this.getCommand("tpt").setExecutor(new TPTCommand(this)); //TPToggle command
-		this.getCommand("tp").setExecutor(new TPCommand(this)); //TP and TPO command
-		this.getCommand("tpo").setExecutor(new TPCommand(this));
+		//TP and TPO command
+		PluginCommand tpCommand = this.getCommand("tp");
+		tpCommand.setAliases(tpAlias);
+		tpCommand.setExecutor(new TPCommand(this));
+		
 		this.getCommand("tph").setExecutor(new TPHCommand(this)); //TPH Command
 
-		this.log.info("[TPToggle] Version 3.0 Enabled");
+		//this.log.info("[TPToggle] Version 3.0 Enabled");
 	}
 
 	@Override
@@ -78,7 +88,7 @@ public class TPToggle extends JavaPlugin {
 		this.log.info("[TPToggle] Saved Player Configurations.");
 		this.playerDataFolder = null;
 
-		this.log.info("[TPToggle] Disabled.");
+		//this.log.info("[TPToggle] Disabled.");
 		this.log = null;
 	}
 
