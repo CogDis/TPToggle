@@ -1,6 +1,6 @@
 name: TPToggle
 main: com.hackhalo2.tp.TPToggle
-version: 3.0rc1
+version: 3.0rc2
 authors:
     - PrecipiceGames (Maintainer)
     - FunnyMan3959 (Author Version 2.0)
@@ -13,11 +13,6 @@ commands:
         example: /tp Notch
         example: /tp 12,60,80
         aliases: [teleport]
-    tpo:
-        descriprion: Override Teleport to someone
-        usage: 'Usage: /tpo <username>'
-        example: /tpo Notch
-        aliases: [tpovrride]
     tpr:
         description: Requests a TP
         usage: 'Usage: /tpr <username>'

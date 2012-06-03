@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import com.hackhalo2.tp.TPToggle;
 import com.hackhalo2.tp.utils.TPPlayer;
@@ -23,6 +24,7 @@ public class TPHCommand implements CommandExecutor {
 		if(!(cs instanceof Player)) return true; //The Console can't TPHere
 		Player origin = (Player)cs;
 		TPPlayer tpOrigin = this.plugin.getTPPlayer(origin);
+
 		if(origin.hasPermission("tptoggle.request")) {
 			if(args.length == 0) { //This is to respond to /tpc requests
 				String temp = tpOrigin.getRequestName();
@@ -38,7 +40,22 @@ public class TPHCommand implements CommandExecutor {
 				if(Bukkit.getPlayer(args[0]) != null) {
 					Player target = Bukkit.getPlayer(args[0]);
 					TPPlayer tpTarget = this.plugin.getTPPlayer(target);
-					if(tpOrigin.isRequesting(target.getName()) || tpOrigin.getOverrideStatus()) {
+					if(c.equals("tpho")) {
+						if(origin.hasPermission("tptoggle.tpho")) {
+							if(origin.canSee(target)) {
+							origin.sendMessage(ChatColor.AQUA+"Teleporting "+ChatColor.GREEN+target.getName()+" to you");
+							tpTarget.setRecallPosition(target.getLocation());
+							return target.teleport(origin, TeleportCause.COMMAND);
+							} else {
+								origin.sendMessage(ChatColor.AQUA+"You can't bring "+ChatColor.GREEN+target.getName()+ChatColor.AQUA+
+										" to you if your invisible");
+								return true;
+							}
+						} else {
+							origin.sendMessage(ChatColor.AQUA+"You do not have permission to "+ChatColor.GREEN+"override teleports");
+							return true;
+						}
+					} else if(tpOrigin.isRequesting(target.getName()) || tpOrigin.getOverrideStatus()) {
 						if(this.plugin.removeWorker(tpOrigin, target.getName())) {
 							tpOrigin.removeRequest(target.getName());
 							return TPUtil.TPTargetToOrigin(origin, target);

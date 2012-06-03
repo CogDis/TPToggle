@@ -10,7 +10,6 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -33,6 +32,7 @@ public class TPToggle extends JavaPlugin {
 	
 	//alias'
 	private final List<String> tpAlias = Arrays.asList("tp, tpo");
+	private final List<String> tphAlias = Arrays.asList("tph, tpho");
 
 	public static long OPTIMAL_TICKS_PER_MINUTES = 20*60;
 
@@ -63,12 +63,16 @@ public class TPToggle extends JavaPlugin {
 		pm.registerEvents(this.listener, this);
 
 		this.getCommand("tpt").setExecutor(new TPTCommand(this)); //TPToggle command
+		
 		//TP and TPO command
 		PluginCommand tpCommand = this.getCommand("tp");
 		tpCommand.setAliases(tpAlias);
 		tpCommand.setExecutor(new TPCommand(this));
 		
-		this.getCommand("tph").setExecutor(new TPHCommand(this)); //TPH Command
+		 //TPH and TPHO Command
+		PluginCommand tphCommand = this.getCommand("tph");
+		tphCommand.setAliases(tphAlias);
+		tphCommand.setExecutor(new TPHCommand(this));
 
 		//this.log.info("[TPToggle] Version 3.0 Enabled");
 	}

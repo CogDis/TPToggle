@@ -35,7 +35,6 @@ public class TPCommand implements CommandExecutor {
 			}
 		}
 
-
 		if(origin.hasPermission("tptoggle.tp")) {
 			if(args.length == 0) {
 				origin.sendMessage(ChatColor.AQUA+"Correct Usage: "+ChatColor.GREEN+"/tp <playername>");
